@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=0 python3 test.py --dataroot '/workspace/data/' --dataset ORFD --name ORFD --use_sne --prob_map  --epoch best
+CUDA_VISIBLE_DEVICES=0 python3.6 test.py --dataroot '/home/data/datasets/ORFD/' --dataset ORFD --name ORFD --use_sne --prob_map  --epoch best

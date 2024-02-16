@@ -13,6 +13,15 @@ def save_images(save_dir, visuals, image_name, image_size, prob_map):
     palet_file = 'datasets/palette.txt'
     impalette = list(np.genfromtxt(palet_file, dtype=np.uint8).reshape(3*256))
 
+
+    # for label, im_data in visuals.items():
+    #     print(f"Label: {label}")
+    #     Label: rgb_image
+    #     Label: another_image
+    #     Label: label
+    #     Label: output
+
+
     for label, im_data in visuals.items():
         if label == 'output':
             if prob_map:
@@ -23,6 +32,31 @@ def save_images(save_dir, visuals, image_name, image_size, prob_map):
                 im = tensor2labelim(im_data, impalette)
                 im = cv2.resize(im, oriSize)
                 cv2.imwrite(os.path.join(save_dir, image_name), cv2.cvtColor(im, cv2.COLOR_RGB2BGR))
+        if label == 'rgb_image':
+            print(im_data.shape)
+            torch.Size([1, 3, 704, 1280])
+            im_data = im_data*255
+            im_data = im_data.squeeze(0)
+            rgb_image_np = im_data.byte().cpu().permute(1, 2, 0).numpy()
+
+            rgb_image_np = cv2.cvtColor(rgb_image_np, cv2.COLOR_RGB2BGR)
+
+            cv2.imwrite(os.path.jn(savoie_dir, image_name), rgb_image_np)
+
+        if label == 'another_image':        
+            if im_data.size(0) == 1:
+                im = im_data.squeeze(0)
+                rgb_image_np = im.permute(1, 2, 0).cpu().numpy()  # Reorganiza las dimensiones a HxWxC
+                # Asegurando que no dividimos por cero en caso de que max == min
+                epsilon = 1e-5
+                normalized_image = 255 * (rgb_image_np - rgb_image_np.min()) / (rgb_image_np.max() - rgb_image_np.min() + epsilon)
+                normalized_image = normalized_image.astype(np.uint8)
+                # Guardar la imagen normalizada para visualización
+                cv2.imwrite(os.path.join(save_dir, image_name), normalized_image)
+            
+
+
+
 
 def tensor2im(input_image, imtype=np.uint8):
     """Converts a image Tensor into an image array (numpy)"""
