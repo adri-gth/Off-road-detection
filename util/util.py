@@ -41,7 +41,7 @@ def save_images(save_dir, visuals, image_name, image_size, prob_map):
 
             rgb_image_np = cv2.cvtColor(rgb_image_np, cv2.COLOR_RGB2BGR)
 
-            cv2.imwrite(os.path.jn(savoie_dir, image_name), rgb_image_np)
+            cv2.imwrite(os.path.jn(save_dir, image_name), rgb_image_np)
 
         if label == 'another_image':        
             if im_data.size(0) == 1:
