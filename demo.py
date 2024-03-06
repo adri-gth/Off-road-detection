@@ -87,7 +87,7 @@ if __name__ == '__main__':
         normal = sne_model(torch.tensor(depth_image.astype(np.float32)/256), camParam)
         normal_image = normal.cpu().numpy()
         normal_image = np.transpose(normal_image, [1, 2, 0])
-        cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_normal.png')), cv2.cvtColor(255*(1+normal_image)/2, cv2.COLOR_RGB2BGR))
+        #cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_normal.png')), cv2.cvtColor(255*(1+normal_image)/2, cv2.COLOR_RGB2BGR))
         normal_image_save = cv2.cvtColor(255*(1+normal_image)/2, cv2.COLOR_RGB2BGR)
         normal_image = cv2.resize(normal_image, use_size)
 
@@ -103,8 +103,8 @@ if __name__ == '__main__':
             pred_img = cv2.resize(pred_img, oriSize)
             prob_map = tensor2confidencemap(pred)
             prob_map = cv2.resize(prob_map, oriSize)
-            cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_pred.png')), pred_img)
-            cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_probmap.png')), prob_map)
+            #cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_pred.png')), pred_img)
+            #cv2.imwrite(os.path.join(os.path.join(save_dir, img_name+'_probmap.png')), prob_map)
 
             rgb_image_save = rgb_image_save.transpose(2,0,1)
             pred_img = pred_img.transpose(2,0,1)

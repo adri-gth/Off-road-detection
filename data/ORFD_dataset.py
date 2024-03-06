@@ -81,11 +81,11 @@ class orfddataset(BaseDataset):
         depth_image = cv2.imread(os.path.join(useDir, 'dense_depth', name), cv2.IMREAD_ANYDEPTH)
         oriHeight, oriWidth, _ = rgb_image.shape
         if self.opt.phase == 'test' and self.opt.no_label:
-            # Since we have no gt label (e.g., kitti submission), we generate pseudo gt labels to
-            # avoid destroying the code architecture
+            #Since we have no gt label (e.g., kitti submission), we generate pseudo gt labels to
+            #avoid destroying the code architecture
             label = np.zeros((oriHeight, oriWidth), dtype=np.uint8)
         else:
-            #label_image = cv2.cvtColor(cv2.imread(os.path.join(useDir, 'gt_image_2', name[:-10]+'road_'+name[-10:])), cv2.COLOR_BGR2RGB)
+                       
             label_img_name = name.split('.')[0]+"_fillcolor.png"
             label_dir = os.path.join(useDir, 'gt_image', label_img_name)
             label_image = cv2.cvtColor(cv2.imread(label_dir), cv2.COLOR_BGR2RGB)

@@ -9,12 +9,14 @@ import cv2
 
 if __name__ == '__main__':
     opt = TestOptions().parse()
+    
     opt.num_threads = 1
     opt.batch_size = 1
     opt.serial_batches = True  # no shuffle
     opt.isTrain = False
 
     save_dir = os.path.join(opt.results_dir, opt.name, opt.phase + '_' + opt.epoch)
+    
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
