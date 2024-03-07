@@ -57,7 +57,7 @@ def save_images(save_dir, visuals, image_name, image_size, prob_map):
                 # Guardar la imagen normalizada para visualización
 
                 #cv2.imwrite(os.path.join(save_dir, image_name), normalized_image)
-                cv2.imwrite(os.path.join(save_dir, 'another_image', image_name), rgb_image_np)
+                cv2.imwrite(os.path.join(save_dir, 'another_image', image_name), normalized_image)
             
 
 

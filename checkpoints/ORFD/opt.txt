@@ -1,7 +1,7 @@
 ----------------- Options ---------------
                batch_size: 2                             
           checkpoints_dir: ./checkpoints                 
-                 dataroot: /home/data/datasets/ORFD/     	[default: None]
+                 dataroot: examples                      	[default: None]
                   dataset: ORFD                          
                     epoch: best                          	[default: latest]
                   gpu_ids: 0                             
@@ -14,7 +14,7 @@
                      norm: instance                      
               num_threads: 0                             
                     phase: test                          
-                 prob_map: True                          	[default: False]
+                 prob_map: False                         
               results_dir: ./testresults/                
                      seed: 0                             
            serial_batches: False                         
